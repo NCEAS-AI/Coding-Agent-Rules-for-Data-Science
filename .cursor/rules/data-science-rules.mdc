@@ -1,0 +1,220 @@
+---
+description: Reproducible R and Python data-science conventions (environmental, ecological, geospatial)
+alwaysApply: true
+---
+
+# Priorities
+Optimize for code that reads top-to-bottom and reruns cleanly — not for abstraction,
+generality, or "production" polish. This is reproducible analysis, not a software product.
+
+# System / environment
+- Primary host: Aurora (aurora.nceas.ucsb.edu) — a shared, multi-user NCEAS research
+  server reached over SSH. Many people use it at once, so resource discipline matters
+  (see Parallel & multiprocessing).
+- CPU: 2x AMD EPYC 9634 -> 168 physical cores / 336 logical (2 threads/core).
+- RAM: ~2.2 TiB.
+- Work may also run on local machines; the shared-server utilization caps below apply
+  specifically when on a shared server like Aurora.
+
+# Communication
+- Be concise and scannable; lead with the answer; don't restate code back.
+- When directions are unclear, ask clarifying questions — and note how the request
+  could have been phrased more clearly.
+
+# Working with code (general)
+- Make only changes that were requested or are clearly understood and directly related
+  to the task. Don't touch unrelated code.
+- Strongly prefer common, well-documented, standard packages and techniques.
+- Don't assume a package or function exists from memory. Confirm it's installed in the
+  active environment before importing, and verify the specific function/argument exists
+  in the installed version rather than guessing.
+- Never fabricate data, results, statistics, or citations. When inferring something
+  rather than knowing it, say so.
+
+# Scope & file discipline
+- Edit the currently open file. Never create a new file to hold changes unless
+  explicitly asked. Don't write single-use throwaway scripts.
+- When fixing a bug, exhaust the existing implementation before introducing a new
+  pattern or library. If switching is unavoidable, delete the old version — leave no
+  duplicate logic behind.
+
+# Simplicity & abstraction
+- Prefer the simplest solution that works. Don't wrap a few lines in a function or
+  class without a real reason (no premature abstraction).
+- Don't extract functions, constants, or settings into a separate sourced/imported
+  file unless explicitly asked to refactor that way.
+- Avoid duplicate or parallel implementations across the codebase; don't reinvent what
+  already exists. This is about architecture, NOT within-script style — inside a single
+  file, prefer readable inline steps over extracted helpers, even at the cost of a
+  little repetition.
+
+# Script structure (literate & linear)
+- Write every file to read top-to-bottom as a self-contained narrative that runs in a
+  fresh session. A reader should follow the full chain of reasoning to the conclusion by
+  reading it start to finish, with no indirection to chase.
+- Use this layout, in order:
+    1. Header comment: purpose, inputs, outputs.
+    2. Settings — every tunable parameter/variable (chunk size, worker count, flags,
+       thresholds) as well-formatted, commented variables, editable in one place.
+    3. File paths — every path the script uses, declared up front.
+    4. Body, in numbered sequential stages.
+- Mark major sections with a foldable, visually bold divider that opens with a title
+  and emoji over an equals bar:
+    R:        # ============================================================
+              # ⚙️ Settings ----
+              # ============================================================
+    Python:   # %% ⚙️ Settings
+              # ============================================================
+  (The `----` / `# %%` makes the section foldable in the editor outline.)
+
+# Multi-file pipelines
+- When scripts in a folder chain together or build on each other, number them in run
+  order with a zero-padded prefix: 01_, 02_, 03_, …
+- When inserting a new step between existing ones, renumber the whole sequence so it
+  stays correct and contiguous. Don't use 01b_, suffixes, or out-of-order numbers.
+- Declare each script's inputs and outputs in its header.
+
+# Project layout & housekeeping
+- Standard project folders: scripts/ (the numbered analysis pipeline), logs/ (run
+  logs, process output, agent-monitored logs, the change record, and temp/scratch),
+  and archive/ (retired code and files). Raw data and derived outputs both live in
+  dedicated locations outside the project folder (see Outputs).
+- Archive, don't delete. When a script or block of code is retired by a rewrite or is
+  no longer needed, move it into archive/ rather than deleting it. Same for any file or
+  folder being removed during cleanup — relocate it into archive/ instead of hard-
+  deleting. Keep archive/ organized (e.g., dated or mirroring the original structure),
+  not a dumping ground.
+- Keep the main folder clean. Move logs, temp, and scratch files out of the project
+  root into logs/ so they don't clog it; don't scatter throwaway output at the top level.
+- Keep a change record. Maintain a dated log of structural changes — what was archived,
+  moved, or removed, and why — so the folder's history stays recoverable. This matters
+  for agentic work, where it's easy to lose track of how things evolved.
+    Suggested: logs/CHANGELOG.md, appended with "## <YYYY-MM-DD HH:MM PT> — <summary>".
+- Deletion still requires confirmation (see Agent guardrails); archiving is the
+  default, safe alternative to removing work.
+
+# READMEs
+Maintain two READMEs (never one per script); a single expansive README covering both
+is fine, and it's okay for it to be long:
+- Project README at the working-directory root — the top-level "what's going on here"
+  document: project purpose, the pipeline and run order, the overall workflow, folder
+  structure, and where data and outputs live.
+- Data README in the output/data location: documents the data so it can be USED
+  without reading any script — file layout, a data dictionary (fields/bands, units,
+  ranges, nodata), spatial reference (CRS), temporal coverage, provenance, caveats,
+  and the path to the scripts folder where the pipeline that originally created the
+  data lives (relative from the data README when possible).
+Behavior:
+- Create a missing README before finishing work in that area.
+- Update the relevant README in the same change set whenever code, outputs, fields,
+  paths, or steps change.
+- Audit before completing: fix anything stale and note what changed.
+
+# Outputs
+- Assume derived outputs are written to a dedicated location outside the working
+  directory, not into the project folder. If that location isn't already specified in
+  the code or the conversation, ask before writing — don't guess a path.
+
+# Comments & narration
+- Comment the WHY and the reasoning behind each decision. Narrate non-obvious steps from
+  a data-science perspective so a reader understands what's happening. Don't comment
+  trivial lines that just restate the code.
+- Use emojis in comments and output to aid scanning and understanding.
+
+# Run-log comments (snapshots, not truth)
+- After a run, a dated note may be appended recording key observed outcomes of a step to
+  make drift visible across future runs:
+    # RUN LOG <YYYY-MM-DD HH:MM PT>: <row counts, key stats, extents/CRS, file sizes>
+- Treat these as historical snapshots, never as authoritative. The real record of a
+  result is the code's actual output. If nearby code changes, flag that a run-log note
+  may be stale and offer to update it.
+
+# R
+- Follow the tidyverse style guide; snake_case; native pipe |> with one verb per line.
+- Prefer a consistent, well-documented ecosystem (e.g. tidyverse + sf/terra). Don't
+  shadow base names (data, df, sd, T, c). Don't add dependencies casually.
+
+# Python
+- Apply the same readability philosophy: prefer clear, chained data transformations
+  written one method per line so the logic reads top-to-bottom. Use well-established,
+  well-documented libraries; don't add dependencies casually. Put type hints on
+  function signatures. Prefer uv for environments.
+
+# Reproducibility & data integrity
+- Pin dependencies (renv / uv). Use relative paths via here(). Set seeds and comment
+  them. Treat raw data as read-only — write derived outputs to separate paths.
+- Never silently drop rows, recode values, change units, or reproject. Make any such
+  transformation explicit, commented, and called out plainly.
+
+# Geospatial & CRS handling
+CRS errors are silent, so be deliberate.
+- Verify the CRS on load rather than assuming it, and check it before and after
+  transformations. Don't confuse relabeling a CRS with reprojecting it. Validate that
+  transformations succeeded and that CRS assumptions hold (e.g. sanity-check coordinate
+  ranges, extent, or geometry after reprojecting).
+- Measure in a projected CRS rather than geographic degrees, choosing one suited to what's
+  being measured (e.g. equal-area for area, equidistant for distance). Different steps may
+  use different CRSs.
+- Bring layers to a common CRS before multi-layer operations, and mind the datum, not just
+  the projection.
+- When reprojecting rasters, match the resampling method to the data (categorical vs
+  continuous) and avoid needless repeated resampling.
+- Note the CRS of outputs.
+
+# Formatting
+- Write clean, readable, well-structured code — naming, sectioning, and logical flow are
+  part of the job. Let Air (R) and Ruff (Python) own mechanical layout — whitespace,
+  quotes, line-wrapping — and don't hand-tune or fight what they'll normalize on save.
+
+# Logging & output
+- Timestamp every print/log statement in Pacific Time:
+    R:      format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z", tz = "America/Los_Angeles")
+    Python: datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d %H:%M:%S %Z")
+
+# Parallel & multiprocessing
+Applies to parallel R/Python. Expose controls in Settings (workers, chunk, mem cap, nice).
+
+- Utilization caps (hard):
+    - CPU/RAM (shared): total load — cap 75%, target ~70%. Pre-flight live metrics; back off if crowded; re-check on long runs.
+    - GPU (single-user): max throughput while you hold the device; host-side workers still obey CPU/RAM caps.
+    - Measure: `nproc`, `/proc/loadavg`, `free -h` (or psutil).
+
+- Flat memory profile via chunking: load one small chunk -> reduce/filter immediately ->
+  keep only the small result -> combine at the end. Don't load everything then process.
+  Don't gate on "free RAM before launch" alone — workers pass the gate, then all spike at
+  once and crash the box.
+
+- Hard per-worker memory cap at the OS level so a runaway worker dies cleanly instead of
+  triggering the OOM killer and taking down the server. Lower CPU priority (nice) so
+  interactive users aren't starved.
+
+- Guarantee worker cleanup even on crash (context manager / on.exit / stop the cluster).
+  Never leave zombie workers.
+
+- Wrap worker logic in try/except (tryCatch) and return a structured status object. Never
+  fail silently inside a subprocess; catch the memory-cap error explicitly.
+
+- Pass file paths and small primitives to workers, not large objects (DataFrames, arrays,
+  loaded rasters) — each worker serializes its own copy, multiplying memory.
+
+- Match the tool to the bottleneck: processes for CPU-bound work (raster math, array ops —
+  true parallelism); threads/async for I/O-bound work (downloads, disk, APIs).
+
+- Validate before scaling up — either run serially or do a smoke test with a low
+  worker count — since subprocess errors are cryptic.
+
+- Watch fork vs spawn: forking copies parent state and open handles and can crash
+  libraries like GDAL/rasterio/terra/CUDA. On mysterious segfaults or hangs, switch to
+  spawn (Python) or a PSOCK cluster instead of fork/mclapply (R) — at the cost of slower
+  startup and requiring all arguments to be serializable.
+  Tooling: Python — resource.setrlimit (mem cap), os.nice, maxtasksperchild.
+           R — unix::rlimit_as (mem cap), tools::psnice, PSOCK clusters for spawn-like
+           isolation.
+
+# Long-run progress
+Long jobs: progress must be easy to see from chat — prefer tqdm (or similar) with ETA; logged updates are fine if the log streams live here. Before launch, ensure something is observable and say where to watch; flag stalls.
+
+# Agent guardrails
+- Never run destructive commands (rm, overwrites, git commit/push, force) or modify
+  env/config files without surfacing them first and getting confirmation.
+- For consequential or multi-step work, state the plan and pause for confirmation.
