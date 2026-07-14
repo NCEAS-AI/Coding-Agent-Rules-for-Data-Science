@@ -56,9 +56,11 @@ it for any purpose, no attribution required.
 
 ## How to cite
 
-Attribution isn't required, but if you'd like to cite it, metadata is in
+Attribution isn't required, but citation metadata is in
 [`CITATION.cff`](CITATION.cff) (GitHub renders a "Cite this repository" button from
 it, and a Zenodo DOI will appear at the top of this README once archived).
+
+If you're a true homie, you can cite us at:
 
 > Broderick, C. (2026). *Coding-Agent Rules for Data Science* (Version v1.0.0)
 > [Software]. https://github.com/NCEAS-AI/Coding-Agent-Rules-for-Data-Science
