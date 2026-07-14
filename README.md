@@ -62,18 +62,9 @@ it for any purpose, no attribution required.
 
 <div align="center">
 
-✨🎉🫶 &nbsp; $\textcolor{ff69b4}{\textsf{Citation isn't required, but if you're a true homie you will!}}$ &nbsp; 🫶🎉✨
-
-[![cite us — be a homie](https://img.shields.io/badge/cite%20us-be%20a%20homie-ff69b4?style=for-the-badge&logo=github)](CITATION.cff)
-&nbsp;
-[![public domain — CC0 1.0](https://img.shields.io/badge/license-CC0%201.0-gold?style=for-the-badge)](LICENSE)
-&nbsp;
-[![powered by sparkles](https://img.shields.io/badge/powered%20by-%E2%9C%A8%20sparkles-9b5de5?style=for-the-badge)](#cite-us)
+✨🎉🫶 &nbsp; **Citation isn't required, but if you're a true homie you will!** &nbsp; 🫶🎉✨
 
 </div>
-
-> [!TIP]
-> 🫶 **Be a true homie.** It's CC0 / public domain, so citing is 100% optional — but a little shout-out absolutely makes our day. 📣
 
 Citation metadata lives in [`CITATION.cff`](CITATION.cff) — GitHub renders a **"Cite this
 repository"** button from it, and a Zenodo DOI will appear at the top of this README once
