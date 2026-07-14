@@ -4,9 +4,23 @@
 
 A reproducible R/Python data-science conventions ruleset for agentic coding in environmental, ecological, and geospatial work, written to be dropped into a Cursor project as an always-on rules file that steers agentic tools toward code that reads top-to-bottom and reruns cleanly.
 
+## Repository contents
+
+- `.cursor/rules/data-science-rules.mdc` — the conventions themselves: a Cursor rules file (Markdown body with YAML front matter, including `alwaysApply: true`).
+- `LICENSE` — the full CC0 1.0 Universal public domain dedication.
+- `CITATION.cff` — Citation File Format metadata that powers GitHub's "Cite this repository" button.
+- `README.md` — this file.
+
 ## How to use
 
-It's a Cursor rules file — place it under `.cursor/rules/` with the `.mdc` extension (e.g. `.cursor/rules/data-science-rules.mdc`). The `alwaysApply: true` front matter loads it on every request. The `.md` copy is for easy reading; rename it to `.mdc` when installing.
+The conventions live in a single Cursor rules file, `.cursor/rules/data-science-rules.mdc`. To use them in your own project, copy that file into your project's `.cursor/rules/` directory, keeping the `.mdc` extension:
+
+```bash
+mkdir -p .cursor/rules
+cp data-science-rules.mdc <your-project>/.cursor/rules/
+```
+
+The `alwaysApply: true` front matter loads the rules on every request, so agentic tools follow them automatically. The file's body is plain Markdown, so you can also read it directly here on GitHub or in any editor.
 
 The conventions cover:
 
