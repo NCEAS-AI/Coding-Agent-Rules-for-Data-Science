@@ -66,11 +66,16 @@ generality, or "production" polish. This is reproducible analysis, not a softwar
 
 ## 📁 Scope & file discipline
 
-- Edit the currently open file. Never create a new file to hold changes unless
-  explicitly asked. Don't write single-use throwaway scripts.
+- Default to editing the file already under discussion, not spinning off a new one.
+  Models tend to reach for a fresh script for every task, which litters the project with
+  orphaned single-use files. When the request concerns an existing script, make the
+  change there.
+- Create a new file only when the work genuinely calls for it — a real new pipeline
+  stage, a README, or the change record — never as a reflex, and never to hold a change
+  that belongs in the file already open.
 - When fixing a bug, exhaust the existing implementation before introducing a new
-  pattern or library. If switching is unavoidable, delete the old version — leave no
-  duplicate logic behind.
+  pattern or library. If switching is unavoidable, retire the old version by archiving it
+  (see Housekeeping) — leave no duplicate logic behind in the active code.
 
 ---
 
@@ -122,6 +127,11 @@ generality, or "production" polish. This is reproducible analysis, not a softwar
   order with a zero-padded prefix: 01_, 02_, 03_, …
 - When inserting a new step between existing ones, renumber the whole sequence so it
   stays correct and contiguous. Don't use 01b_, suffixes, or out-of-order numbers.
+- Renumbering is not just a rename. In the same change set, update every internal
+  reference to the affected files — source/import calls, README mentions, run-log notes,
+  cross-references — and report the rename map (old -> new). If those references can't be
+  found and updated cleanly in one pass, treat the renumber as consequential and pause
+  for confirmation before making it (see Agent guardrails).
 - Declare each script's inputs and outputs in its header.
 
 ---
@@ -216,14 +226,21 @@ Behavior:
 - Apply the same readability philosophy: prefer clear, chained data transformations
   written one method per line so the logic reads top-to-bottom. Use well-established,
   well-documented libraries; don't add dependencies casually. Put type hints on
-  function signatures. Prefer uv for environments.
+  function signatures.
 
 ---
 
 ## ♻️ Reproducibility & data integrity
 
-- Pin dependencies (renv / uv). Use relative paths via here(). Set seeds and comment
-  them. Treat raw data as read-only — write derived outputs to separate paths.
+- Pin dependencies so the environment can be rebuilt exactly.
+- Match the environment/dependency manager to the stack: a lightweight, language-native
+  manager is fine for pure-language packages, but favor whatever reliably supplies
+  prebuilt binaries for heavy system-level dependencies (geospatial, GPU/compiled).
+  Whatever the choice, pin it.
+- Anchor paths to the project root rather than the current working directory, so a script
+  runs the same no matter where it's launched from.
+- Set seeds and comment them. Treat raw data as read-only — write derived outputs to
+  separate paths.
 - Never silently drop rows, recode values, change units, or reproject. Make any such
   transformation explicit, commented, and called out plainly.
 
@@ -310,6 +327,20 @@ Applies to parallel R/Python. Expose controls in Settings (workers, chunk, mem c
 Long jobs: progress must be easy to see from chat — prefer tqdm (or similar) with ETA;
 logged updates are fine if the log streams live here. Before launch, ensure something is
 observable and say where to watch; flag stalls.
+
+---
+
+## 💾 Checkpointing & resumability
+
+- For long or heavy jobs, persist intermediate results as they complete so a failure
+  part-way through doesn't cost the whole run.
+- On rerun, detect work already done and skip it — check for outputs/chunks already
+  written rather than recomputing them.
+- Write checkpoints atomically: write to a temp path, then move into place, so an
+  interrupted write can't leave a corrupt partial output that a later run mistakes for
+  "done."
+- Expose the resume-vs-overwrite behavior as a control in Settings, so a clean full
+  re-run can be forced when needed.
 
 ---
 

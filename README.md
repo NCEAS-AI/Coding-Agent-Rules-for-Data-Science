@@ -1,5 +1,7 @@
 # Data-Science Agent Rules & Conventions
 
+[![License: CC0 1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+
 A portable set of **reproducible R and Python data-science conventions** for
 environmental, ecological, and geospatial work. These rules guide an AI coding
 assistant (or a human) toward analysis code that reads top-to-bottom, reruns
@@ -65,3 +67,13 @@ cp .cursor/rules/data-science-rules.mdc <your-project>/docs/data-science-convent
 
 Adjust the destination to match your assistant's expected rules path. The content
 is the same regardless of where it lives.
+
+## License
+
+This project is released under the
+[CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) public
+domain dedication. To the extent possible under law, all rights are waived — you
+may copy, modify, and use these rules for any purpose without asking permission
+or providing attribution.
+
+See the [`LICENSE`](LICENSE) file for the full, verbatim CC0 1.0 legal text.
