@@ -1,9 +1,10 @@
 # Coding-Agent Rules for Data Science — Interactive Setup
 
 This repository holds a reusable ruleset for steering AI coding agents toward
-reproducible, analysis-first data-science work (R and Python; environmental,
-ecological, geospatial). This file is the **installer**: it turns the generic
-ruleset into a personalized one and drops it into your IDE in the right place.
+reproducible, analysis-first data-science work in R and Python, for scientists
+and researchers across any field. This file is the **installer**: it turns the
+generic ruleset into a personalized one and drops it into your IDE in the right
+place.
 
 ---
 
@@ -62,8 +63,9 @@ Before anything else, ask the user two quick questions:
 
 **B. Fast path or full interview?**
 - **[Fast]** Use sensible defaults, and ask only the few questions that most
-  change the outcome: languages; geospatial / parallel / GPU work; server vs.
-  laptop; and whether you want emoji comments. Everything else takes its default.
+  change the outcome: your field; languages; geospatial / parallel / GPU work;
+  server vs. laptop; and whether you want emoji comments. Everything else takes
+  its default.
 - **Full interview** — walk the complete questionnaire in Phase 3.
 
 Record both answers and follow them for the rest of setup.
@@ -157,29 +159,30 @@ Summarize everything and let the user correct it before continuing.
 
 Ask in order, one at a time, skipping any rendered irrelevant by earlier answers.
 Defaults in `[brackets]`. **If the user chose Fast in Phase 0, ask only questions
-1–5 and 7, and take the default for everything else.**
+1–6 and 8, and take the default for everything else.**
 
 ### Context (decides which sections get included)
 
-1. **Which languages here?** R only / Python only / **[both]**
-2. **Do you do geospatial / spatial work** (rasters, vectors, CRS reprojection)? yes / **[no]**
-3. **Will you run parallel or multiprocessing jobs?** yes / no / **[unsure — include it lightly]**
-4. **GPU compute** (deep learning, CUDA)? yes / **[no]**
-5. **Shared multi-user server, or your own machine?** *(confirm the Phase 2 finding)*
-6. **Notebook-based, script-based, or both?** **[scripts]** / notebooks / both
+1. **What field or domain do you work in?** free-text, e.g. ecology, genomics, economics, physics, ML — **[general data science]** *(tailors the ruleset's framing and examples; does not force geospatial/parallel content)*
+2. **Which languages here?** R only / Python only / **[both]**
+3. **Do you do geospatial / spatial work** (rasters, vectors, CRS reprojection)? yes / **[no]**
+4. **Will you run parallel or multiprocessing jobs?** yes / no / **[unsure — include it lightly]**
+5. **GPU compute** (deep learning, CUDA)? yes / **[no]**
+6. **Shared multi-user server, or your own machine?** *(confirm the Phase 2 finding)*
+7. **Notebook-based, script-based, or both?** **[scripts]** / notebooks / both
 
 ### Preferences (genuinely your call — no universal right answer)
 
-7. **Emojis in comments and section dividers?** **[yes]** / no *(cosmetic; dividers still fold either way)*
-8. **How strict is "real data only — never fabricate"?** **[hard stop]** (refuse & ask) / warn-but-continue / relaxed
-9. **Log-timestamp timezone?** *(propose the detected system tz)* **[detected]** / specify one / no timestamps
-10. **Comment style:** narrate the *why* behind non-obvious steps **[yes]** / keep comments minimal
-11. *(R only)* **R style:** tidyverse-first **[default]** / base-R-first / no preference
-12. **Adopt the project layout** (`scripts/`, `logs/`, `archive/`, archive-don't-delete, CHANGELOG)? full **[yes]** / lite (just the folders) / no
-13. **Two-README discipline** (a project README + a data README)? **[yes]** / no
-14. **Confirmation strictness for destructive or multi-step actions?** always confirm **[default]** / confirm only destructive / minimal
-15. **Where should the rules apply?** always-on **[default]** / scoped to file globs (e.g. only `*.R`, `*.py`) — *(maps to the tool's activation mechanism)*
-16. *(shared server only)* **Utilization caps** — total-load ceiling / target. **[75% cap / ~70% target]** or specify your own.
+8. **Emojis in comments and section dividers?** **[yes]** / no *(cosmetic; dividers still fold either way)*
+9. **How strict is "real data only — never fabricate"?** **[hard stop]** (refuse & ask) / warn-but-continue / relaxed
+10. **Log-timestamp timezone?** *(propose the detected system tz)* **[detected]** / specify one / no timestamps
+11. **Comment style:** narrate the *why* behind non-obvious steps **[yes]** / keep comments minimal
+12. *(R only)* **R style:** tidyverse-first **[default]** / base-R-first / no preference
+13. **Adopt the project layout** (`scripts/`, `logs/`, `archive/`, archive-don't-delete, CHANGELOG)? full **[yes]** / lite (just the folders) / no
+14. **Two-README discipline** (a project README + a data README)? **[yes]** / no
+15. **Confirmation strictness for destructive or multi-step actions?** always confirm **[default]** / confirm only destructive / minimal
+16. **Where should the rules apply?** always-on **[default]** / scoped to file globs (e.g. only `*.R`, `*.py`) — *(maps to the tool's activation mechanism)*
+17. *(shared server only)* **Utilization caps** — total-load ceiling / target. **[75% cap / ~70% target]** or specify your own.
 
 *(Everything else — reproducibility, CRS discipline, worker cleanup, guardrails —
 is treated as universally good and included without asking, unless the user
@@ -196,7 +199,8 @@ Build from `rules-template.md` (in this folder). Each section there is tagged:
   if the matching context answer was yes.
 - `<!-- PREF: ... -->` → include/adjust per the matching preference answer.
 - `<!-- SYSTEM -->` → replace placeholders (`{{HOST_DESC}}`, `{{CORES}}`,
-  `{{RAM}}`, `{{GPU}}`, `{{TZ}}`, `{{CPU_CAP}}`, `{{MEM_CAP}}`) with real facts.
+  `{{RAM}}`, `{{GPU}}`, `{{TZ}}`, `{{CPU_CAP}}`, `{{MEM_CAP}}`, `{{FIELD}}`) with
+  real facts.
 
 Assembly steps:
 
@@ -207,13 +211,18 @@ Assembly steps:
    confirmation-strictness sections to match.
 4. Replace the entire "System / environment" block with the user's real machine
    (never leave anyone else's specs in the file).
-5. Drop any formatter line for a formatter they don't have installed.
-6. Set the log-timestamp timezone to theirs.
-7. **Fit the target tool:** if it has size limits (e.g. Windsurf), split into
+5. **Tailor to the user's field (question 1):** substitute `{{FIELD}}` into the
+   intro line, and lightly adjust the `description:` frontmatter and any examples
+   to fit their domain. This is framing only — it does **not** add geospatial,
+   parallel, GPU, or any other CONTEXT content. If they took the default, use
+   "data science" and leave the framing generic.
+6. Drop any formatter line for a formatter they don't have installed.
+7. Set the log-timestamp timezone to theirs.
+8. **Fit the target tool:** if it has size limits (e.g. Windsurf), split into
    scoped modules or trim to the ceiling; if it uses frontmatter (Cursor, Copilot
    glob files), generate the correct header and set `alwaysApply`/`globs` or
-   `applyTo` from question 15.
-8. Add a short provenance comment at the very top noting the source
+   `applyTo` from question 16.
+9. Add a short provenance comment at the very top noting the source
    (`NCEAS-AI/Coding-Agent-Rules-for-Data-Science`) and that this is a **static
    snapshot** generated at setup — it does not auto-update.
 

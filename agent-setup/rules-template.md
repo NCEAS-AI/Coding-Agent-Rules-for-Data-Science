@@ -6,18 +6,19 @@
     CONTEXT: <tag>       → include only if the user does that kind of work
     PREF: <name>         → include/adjust per the user's stated preference
     SYSTEM               → replace {{PLACEHOLDERS}} with the user's real machine
-  Placeholders: {{HOST_DESC}} {{CORES}} {{RAM}} {{GPU}} {{TZ}} {{CPU_CAP}} {{MEM_CAP}}
+  Placeholders: {{HOST_DESC}} {{CORES}} {{RAM}} {{GPU}} {{TZ}} {{CPU_CAP}} {{MEM_CAP}} {{FIELD}}
   Emoji dividers are shown; strip the emojis if the user declines them (PREF: emojis).
 -->
 ---
-description: Reproducible R and Python data-science conventions (environmental, ecological, geospatial)
-alwaysApply: true   # SETUP: set from question 15 (always-on vs glob-scoped)
+description: Reproducible R and Python data-science conventions for agentic coding   # SETUP: may be tailored to the user's field (question 1)
+alwaysApply: true   # SETUP: set from question 16 (always-on vs glob-scoped)
 ---
 
 # Data-Science Conventions (R & Python)
 
-Reproducible R and Python data-science work. These are conventions for
-reproducible analysis, **not** a software product.
+Reproducible R and Python code for {{FIELD}} — conventions for reproducible
+analysis, **not** a software product. *(SETUP fills `{{FIELD}}` from the user's
+field; defaults to "data science".)*
 
 <!-- UNIVERSAL -->
 ## 🎯 Priorities

@@ -3,10 +3,12 @@
 # Coding-Agent Rules for Data Science
 
 A reusable, IDE-agnostic ruleset that steers AI coding agents toward
-**reproducible, analysis-first** data-science work in R and Python — with an
-environmental, ecological, and geospatial slant. Instead of copying a one-size
-config, you point your agent at this repo and it **installs a personalized copy**
-tuned to your tools, your machine, and your preferences.
+**reproducible, analysis-first** data-science work in R and Python — for
+scientists and researchers doing agentic coding across any field (ecology,
+genomics, economics, physics, ML, general data science, and more). Instead of
+copying a one-size config, you point your agent at this repo and it **installs a
+personalized copy** tuned to your field, your tools, your machine, and your
+preferences.
 
 ## Quick start
 
@@ -20,7 +22,7 @@ The agent will:
 1. Ask how you want to run setup — let it probe your machine and auto-answer what it can, or answer everything yourself; fast path or full interview.
 2. Figure out which tool you're using and where that tool expects rules files.
 3. Inspect (or ask about) *your* system — cores, RAM, GPU, OS, installed languages — never assume anyone else's.
-4. Ask the parts that are genuinely your call (languages, geospatial/parallel/GPU work, server vs. laptop, emoji comments, strictness, layout, and more).
+4. Ask the parts that are genuinely your call (your field, languages, geospatial/parallel/GPU work, server vs. laptop, emoji comments, strictness, layout, and more).
 5. Assemble a personalized ruleset from `agent-setup/rules-template.md`, write it into the correct location and format for your tool, and print the whole thing back for you to review.
 
 Prefer to do it by hand? `agent-setup/SETUP.md` is readable on its own — the phases and the full questionnaire are right there.
@@ -54,13 +56,32 @@ Prefer to do it by hand? `agent-setup/SETUP.md` is readable on its own — the p
 Released under [CC0 1.0 Universal](LICENSE) — public domain. Copy, modify, and use
 it for any purpose, no attribution required.
 
+---
+
 ## Cite us!
 
-Citation isn't required, but if you're a true homie you will!
+<div align="center">
 
-Citation metadata is in [`CITATION.cff`](CITATION.cff) — GitHub renders a "Cite this
-repository" button from it, and a Zenodo DOI will appear at the top of this README once
+✨🎉🫶 &nbsp; $\textcolor{ff69b4}{\textsf{Citation isn't required, but if you're a true homie you will!}}$ &nbsp; 🫶🎉✨
+
+[![cite us — be a homie](https://img.shields.io/badge/cite%20us-be%20a%20homie-ff69b4?style=for-the-badge&logo=github)](CITATION.cff)
+&nbsp;
+[![public domain — CC0 1.0](https://img.shields.io/badge/license-CC0%201.0-gold?style=for-the-badge)](LICENSE)
+&nbsp;
+[![powered by sparkles](https://img.shields.io/badge/powered%20by-%E2%9C%A8%20sparkles-9b5de5?style=for-the-badge)](#cite-us)
+
+</div>
+
+> [!TIP]
+> 🫶 **Be a true homie.** It's CC0 / public domain, so citing is 100% optional — but a little shout-out absolutely makes our day. 📣
+
+Citation metadata lives in [`CITATION.cff`](CITATION.cff) — GitHub renders a **"Cite this
+repository"** button from it, and a Zenodo DOI will appear at the top of this README once
 archived.
+
+📋 **Copy-paste citation:**
 
 > Broderick, C. (2026). *Coding-Agent Rules for Data Science* (Version v1.0.0)
 > [Software]. https://github.com/NCEAS-AI/Coding-Agent-Rules-for-Data-Science
+
+---
