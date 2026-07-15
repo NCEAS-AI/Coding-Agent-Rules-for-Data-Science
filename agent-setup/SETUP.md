@@ -6,6 +6,10 @@ and researchers across any field. This file is the **installer**: it turns the
 generic ruleset into a personalized one and drops it into your IDE in the right
 place.
 
+This is a **living document**: the ruleset is actively maintained and will keep
+evolving over time. What you install is a static snapshot, so re-run this setup
+whenever you want to refresh an installed copy from the latest version.
+
 ---
 
 > ### If you are an AI coding agent

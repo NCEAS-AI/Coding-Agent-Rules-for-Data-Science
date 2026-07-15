@@ -10,6 +10,10 @@ copying a one-size config, you point your agent at this repo and it **installs a
 personalized copy** tuned to your field, your tools, your machine, and your
 preferences.
 
+This is a **living document**: the ruleset is actively maintained and will keep
+evolving over time. An installed copy is a static snapshot, so re-run the setup
+whenever you want to pull the latest.
+
 ## Quick start
 
 Paste this repository's URL into your coding agent (Cursor, Claude Code,
@@ -48,6 +52,9 @@ Prefer to do it by hand? `agent-setup/SETUP.md` is readable on its own — the p
   discipline, strictness) are asked, not assumed.
 - **Your machine, not mine.** The system section is rewritten from a live inspection
   of your hardware, so utilization caps and worker sizing fit what you're actually on.
+- **Living source.** This repo is actively maintained — the rules will be refined
+  and expanded over time. It's the evolving source; see *Static once installed*
+  below for how that interacts with a copy you've already generated.
 - **Static once installed.** The generated ruleset is a snapshot. It does not phone
   home or auto-update from this repo — re-run the setup yourself if you want a refresh.
 
