@@ -15,9 +15,6 @@ evolving over time. What you set up is a static snapshot, so re-run the setup
 whenever you want to pull the latest.
 
 ## Quick Start Prompt
-
-###  Copy-paste prompt to get started
-
 <b>Paste the prompt below into your coding agent:</b>
 <br>(Cursor, Claude Code, Windsurf, Copilot, Cline, Codex/AGENTS.md, and others)</br>
 
