@@ -14,28 +14,6 @@ This is a **living document**: the ruleset is actively maintained and will keep
 evolving over time. What you set up is a static snapshot, so re-run the setup
 whenever you want to pull the latest.
 
-## What are these rules? (Nothing to install, nothing runs)
-
-**These rules are just a text file.** A rules file is a plain Markdown document
-that your coding agent reads and keeps in its context to guide how it behaves —
-the same way you might paste standing instructions at the top of a chat, except
-your IDE loads it automatically on every request. There's **nothing to install,
-no software to run, and nothing that phones home.** "Setting it up" just means
-putting the Markdown file where your IDE looks for its rules.
-
-Because it's only text, **you can read every word before you use any of it.** If
-you're wary of pointing an agent at a stranger's repo, don't take our word for
-it — open the files and see exactly what the agent would be told to do:
-
-- 👉 **[`personal-rules/data-science-rules.mdc`](personal-rules/data-science-rules.mdc)** —
-  the author's own working ruleset. This is the best place to start: it's a real,
-  filled-in example of what these conventions look like, and you can copy it as-is
-  or just skim it to get the gist.
-- **[`agent-setup/rules-template.md`](agent-setup/rules-template.md)** — the full
-  build source the setup reads from, with every section it can include.
-- **[`agent-setup/SETUP.md`](agent-setup/SETUP.md)** — the exact, human-readable
-  steps the agent follows to tailor the rules to you.
-
 ## Quick start
 
 Paste the prompt below into your coding agent (Cursor, Claude Code, Windsurf,
@@ -70,6 +48,28 @@ phases and the full questionnaire are right there. And if you just want a rulese
 without any of the setup dance, copy
 [`personal-rules/data-science-rules.mdc`](personal-rules/data-science-rules.mdc)
 straight into your IDE's rules folder.
+
+## What are these rules? (Nothing to install, nothing runs)
+
+**These rules are just a text file.** A rules file is a plain Markdown document
+that your coding agent reads and keeps in its context to guide how it behaves —
+the same way you might paste standing instructions at the top of a chat, except
+your IDE loads it automatically on every request. There's **nothing to install,
+no software to run, and nothing that phones home.** "Setting it up" just means
+putting the Markdown file where your IDE looks for its rules.
+
+Because it's only text, **you can read every word before you use any of it.** If
+you're wary of pointing an agent at a stranger's repo, don't take our word for
+it — open the files and see exactly what the agent would be told to do:
+
+- 👉 **[`personal-rules/data-science-rules.mdc`](personal-rules/data-science-rules.mdc)** —
+  the author's own working ruleset. This is the best place to start: it's a real,
+  filled-in example of what these conventions look like, and you can copy it as-is
+  or just skim it to get the gist.
+- **[`agent-setup/rules-template.md`](agent-setup/rules-template.md)** — the full
+  build source the setup reads from, with every section it can include.
+- **[`agent-setup/SETUP.md`](agent-setup/SETUP.md)** — the exact, human-readable
+  steps the agent follows to tailor the rules to you.
 
 ## What's in here
 
