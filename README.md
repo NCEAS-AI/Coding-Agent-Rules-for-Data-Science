@@ -54,7 +54,7 @@ Because it's only text, **you can read every word before you use any of it.** If
 you're wary of pointing an agent at a stranger's repo, don't take our word for
 it — open the files and see exactly what the agent would be told to do:
 
-- 👉 **[`personal-rules/data-science-rules.mdc`](personal-rules/data-science-rules.mdc)** —
+- **[`personal-rules/data-science-rules.mdc`](personal-rules/data-science-rules.mdc)** —
   the author's own working ruleset. This is the best place to start: it's a real,
   filled-in example of what these conventions look like, and you can copy it as-is
   or just skim it to get the gist.
