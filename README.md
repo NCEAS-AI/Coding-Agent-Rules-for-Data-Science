@@ -1,4 +1,4 @@
-<!-- DOI-BADGE-PLACEHOLDER: after your first Zenodo release, replace this line with the badge markdown Zenodo provides. -->
+[![DOI](https://zenodo.org/badge/1297838124.svg)](https://doi.org/10.5281/zenodo.21364494)
 
 # Coding-Agent Rules for Data Science
 
@@ -77,6 +77,6 @@ archived.
 📋 **Copy-paste citation:**
 
 > Broderick, C. (2026). *Coding-Agent Rules for Data Science* (Version v1.0.0)
-> [Software]. https://github.com/NCEAS-AI/Coding-Agent-Rules-for-Data-Science
+> [Software]. Zenodo. https://doi.org/10.5281/zenodo.21364495
 
 ---

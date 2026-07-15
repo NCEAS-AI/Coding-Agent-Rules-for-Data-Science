@@ -7,6 +7,7 @@ authors:
     given-names: Carlo
     orcid: "https://orcid.org/0009-0008-7775-6304"
 version: v1.0.0
+doi: "10.5281/zenodo.21364495"
 date-released: "2026-07-14"
 url: "https://github.com/NCEAS-AI/Coding-Agent-Rules-for-Data-Science"
 repository-code: "https://github.com/NCEAS-AI/Coding-Agent-Rules-for-Data-Science"
