@@ -14,7 +14,9 @@ This is a **living document**: the ruleset is actively maintained and will keep
 evolving over time. What you set up is a static snapshot, so re-run the setup
 whenever you want to pull the latest.
 
-## Quick start
+## Quick Start Prompt
+
+### 📋 Copy-paste prompt to get started
 
 Paste the prompt below into your coding agent (Cursor, Claude Code, Windsurf,
 Copilot, Cline, Codex/AGENTS.md, and others). It already contains this repo's URL
