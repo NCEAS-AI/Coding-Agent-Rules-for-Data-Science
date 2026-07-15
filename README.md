@@ -16,11 +16,10 @@ whenever you want to pull the latest.
 
 ## Quick Start Prompt
 
-### 📋 Copy-paste prompt to get started
+###  Copy-paste prompt to get started
 
 Paste the prompt below into your coding agent:
-
-<sub>(Cursor, Claude Code, Windsurf, Copilot, Cline, Codex/AGENTS.md, and others)</sub>
+(Cursor, Claude Code, Windsurf, Copilot, Cline, Codex/AGENTS.md, and others)
 
 ```text
 Set up a personalized copy of these data-science coding rules for me.
