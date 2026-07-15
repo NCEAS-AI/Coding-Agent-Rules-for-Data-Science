@@ -27,7 +27,7 @@ inspect (or ask about) my system, ask me the preference questions, then build th
 ruleset from agent-setup/rules-template.md and show me the whole thing before you
 write any file.
 ```
-The agent will:
+<b>The agent will:</b>
 
 1. Ask how you want to run setup — let it probe your machine and auto-answer what it can, or answer everything yourself; fast path or full interview.
 2. Figure out which tool you're using and where that tool expects rules files.
